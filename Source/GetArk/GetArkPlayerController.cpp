@@ -110,3 +110,39 @@ void AGetArkPlayerController::OnSetDestinationReleased()
 	// clear flag to indicate we should stop updating the destination
 	bMoveToMouseCursor = false;
 }
+
+void AGetArkPlayerController::Input_KeyInput(void)
+{
+}
+
+void AGetArkPlayerController::Activate_SkillQ(void)
+{
+}
+
+void AGetArkPlayerController::Activate_SkillW(void)
+{
+}
+
+void AGetArkPlayerController::Activate_SkillE(void)
+{
+}
+
+void AGetArkPlayerController::Activate_SkillR(void)
+{
+}
+
+void AGetArkPlayerController::Activate_SkillA(void)
+{
+}
+
+void AGetArkPlayerController::Activate_SkillS(void)
+{
+}
+
+void AGetArkPlayerController::Activate_SkillD(void)
+{
+}
+
+void AGetArkPlayerController::Activate_SkillF(void)
+{
+}

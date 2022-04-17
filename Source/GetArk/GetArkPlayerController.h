@@ -38,6 +38,17 @@ protected:
 	/** Input handlers for SetDestination action. */
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
+private:
+	void	Input_KeyInput(void);
+	void	Activate_SkillQ(void);
+	void	Activate_SkillW(void);
+	void	Activate_SkillE(void);
+	void	Activate_SkillR(void);
+
+	void	Activate_SkillA(void);
+	void	Activate_SkillS(void);
+	void	Activate_SkillD(void);
+	void	Activate_SkillF(void);
 };
 
 
