@@ -4,8 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Camera/CameraComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "GetArkProjectile.h"
 #include "GetArkCharacter.generated.h"
-
 UCLASS(Blueprintable)
 class AGetArkCharacter : public ACharacter
 {
@@ -36,5 +38,14 @@ private:
 	/** A decal that projects to the cursor location. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UDecalComponent* CursorToWorld;
+/*
+public:
+	UFUNCTION()
+		void Fire();
+	UPROPERTY(EditDefaultsOnly, Category = Projectile)
+		TSubclassOf<class AGetArkProjectile> ProjectileClass;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+		FVector MuzzleOffset;
+		*/
 };
 
