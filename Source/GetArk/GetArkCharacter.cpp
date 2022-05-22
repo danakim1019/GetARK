@@ -92,3 +92,30 @@ void AGetArkCharacter::Tick(float DeltaSeconds)
 		}
 	}
 }
+/*
+void AGetArkCharacter::Fire()
+{
+	if (ProjectileClass) {
+		FVector		CameraLocation;
+		FRotator	CameraRotation;
+		GetActorEyesViewPoint(CameraLocation, CameraRotation);
+
+		FVector		MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(MuzzleOffset);
+		FRotator	MuzzleRotation = CameraRotation;
+
+		MuzzleRotation.Pitch += 10.0f;
+		UWorld* World = GetWorld();
+		if (World) {
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = GetInstigator();
+			AGetArkProjectile* pProjectile = World->SpawnActor<AGetArkProjectile>(ProjectileClass, MuzzleLocation, MuzzleRotation, SpawnParams);
+			if (pProjectile) {
+				FVector LaunchDirection = MuzzleRotation.Vector();
+				pProjectile->FireInDirection(LaunchDirection);
+			}
+		}
+	}
+}
+*/
+ 
