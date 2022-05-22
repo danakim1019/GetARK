@@ -1,5 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
+
+
+#include "Kismet/GameplayStatics.h"
 #include "GetArkPlayerController.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Runtime/Engine/Classes/Components/DecalComponent.h"
@@ -173,34 +176,30 @@ void AGetArkPlayerController::Activate_SkillF(void)
 /* 마우스 왼쪽 버튼에 대한 액션 함수 , 총알 발사 함수 */
 void AGetArkPlayerController::Fire(void)
 {
-	UE_LOG(LogTemp, Log, TEXT("InputInput"));
+
+	AActor* pPlayer;
+	// 플레이어 태그를 찾아서 TArray에 보관
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), "Player", m_ArrActors);
+	pPlayer = (AActor*)m_ArrActors.GetData();
+	// TArray에 담긴 액터들을 순회하면서 pPlayer에 대입
+	auto iter = m_ArrActors.begin();
+	for (int i = 0; i < m_ArrActors.Num(); ++i) {
+		pPlayer = *iter;
+	}
 	
 	if (ProjectileClass) {
-		UE_LOG(LogTemp, Log, TEXT("firefirefirefirefirefirefirefire"));
+		//플레이어의 위치와 플레이어가 바라보는 방향을 받아옴
+		FVector vPos = pPlayer->GetActorLocation();
+		FRotator vRot = pPlayer->GetActorRotation();
 
-		FVector		CameraLocation;
-		FRotator	CameraRotation;
+		// 총구의 위치에 플레이어의 위치 대입
+		FVector		MuzzleLocation = vPos + FTransform(vRot).TransformVector(MuzzleOffset);
+		// 총구의 방향에 플레이어의 방향 대입
+		FRotator	MuzzleRotation = vRot;
 
-		FVector		PlayerLocation;
-		FRotator	PlayerRotator;
-		GetActorEyesViewPoint(PlayerLocation, PlayerRotator);
-		GetActorEyesViewPoint(CameraLocation, CameraRotation);
-
-
-
-	//	FVector		MuzzleLocation = CameraLocation + FTransform(CameraRotation).TransformVector(MuzzleOffset);
-//		FRotator	MuzzleRotation = CameraRotation;
-
-		FVector		MuzzleLocation = PlayerLocation + FTransform(PlayerRotator).TransformVector(MuzzleOffset);
-		FRotator	MuzzleRotation = PlayerRotator;
-
-	
-
-		MuzzleRotation.Pitch += 10.0f;
+		MuzzleRotation.Yaw += 10.0f;
 		UWorld* World = GetWorld();
 		if (World) {
-			UE_LOG(LogTemp, Log, TEXT("worldworldworldworldworldworldworld!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"));
-
 			FActorSpawnParameters SpawnParams;
 			SpawnParams.Owner = this;
 			SpawnParams.Instigator = GetInstigator();

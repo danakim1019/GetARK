@@ -74,7 +74,7 @@ private:
 * @ 왼쪽 마우스 버튼을 입력 받을때마다 호출 되는 함수
 */
 	UFUNCTION()
-		void Fire(void);
+		void Fire();
 
 /**
 * @ ProjectileClass : Fire함수를 호출할 때마다 생성시킬 총알 클래스
@@ -88,9 +88,9 @@ public:
 		TSubclassOf<class AGetArkProjectile> ProjectileClass;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 		FVector MuzzleOffset;
-
+	TArray<AActor*> m_ArrActors;
 	//UBluePrintGeneratedClass* LoadedBP;
-
+	class AGetArkCharacter* m_pGetArkCharacter;
 	
 	
 };
